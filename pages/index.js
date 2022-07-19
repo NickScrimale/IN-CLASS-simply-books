@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Button } from 'react-bootstrap';
@@ -21,8 +20,11 @@ function Home() {
   // TODO: make the call to the API to get all the books on component render
   useEffect(() => {
     getAllTheBooks();
-  }, []);
+  }, [user]);
 
+  useEffect(() => {
+    getBooks(user.uid).then(setBooks);
+  }, []);
   return (
     <div className="text-center my-4">
       <Link href="/book/new" passHref>
